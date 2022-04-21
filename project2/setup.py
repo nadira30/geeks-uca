@@ -30,7 +30,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'odom_pub = project2.odom_pub:main'
+        'odom_publisher = project2.odom_publisher:main'
         ],
     },
 )
