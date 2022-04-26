@@ -22,7 +22,7 @@ ser.reset_input_buffer()
 # setup constants
 wheel_separation = 0.41
 radius = 0.04
-K_P = 1
+K_P = 0.3
 # init variables
 counter = 0
 linear = 0  # robot linear velocity
