@@ -41,8 +41,9 @@ class MinimalPublisher(Node):
 		#timer for publishing tfs and topics
 		self.timer_callback = self.create_timer(0.01, self.timer_callback_cb)
 		self.odom_callback = self.create_timer(0.01, self.odom_callback_cb)
-		self.actual_speed = self.create_publisher((Twist), 'actual_speed',1)
-		# can define variables
+		#self.actual_speed = self.create_publisher((Twist), 'actual_speed',1)
+
+                # can define variables
 		self.x = 0.0
 		self.y = 0.0
 		self.th = 0.0
@@ -150,6 +151,7 @@ class MinimalPublisher(Node):
 
 		# Odom topic
 		msg = Odometry()
+		msg1 = Twist()
 		msg.header.stamp = self.curr_time.to_msg()
 		msg.header.frame_id = "odom"
 		msg.child_frame_id = "base_link"
@@ -159,9 +161,11 @@ class MinimalPublisher(Node):
 		msg.pose.pose.orientation.y = q[1]
 		msg.pose.pose.orientation.z = q[2]
 		msg.pose.pose.orientation.w = q[3]
-		msg.twist.twist.linear.x= self.linearX
-		msg.twist.twist.angular.z = self.angularZ
+		msg.twist.twist.linear.x= msg1.linear.x
+		msg.twist.twist.angular.z = msg1.angular.z
 		self.odom_pub.publish(msg)
+		#self.odom_pub.publish(msg1)
+		#self.get_logger().debug('fPublishing : {msg1}')
 		self.get_logger().debug('fPublishing : {msg}')
 		self.pre_time = self.curr_time
 		
